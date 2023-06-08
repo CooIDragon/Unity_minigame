@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool isDead = false;
-
     public float speed;
     public float jumpForce;
-    public float moveInputX;
 
     public Transform frontCheck;
 
+    private float moveInputX;
+
     private bool hasEntered;
-    private bool facingRight = true;
+    private bool isDead;
     private bool inAir;
-    private bool isWallFront = false;
-    private bool extraJumps = true;
+    private bool isWallFront;
+    private bool extraJumps;
+    private bool facingRight = true;
 
     private Rigidbody2D rb;
     
@@ -36,11 +36,11 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.Restart();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isWallFront && extraJumps) {
-            doJump();
+        if (Input.GetKeyDown(KeyCode.Space) && isWallFront && extraJumps && inAir) {
+            doJump(10);
             extraJumps = false;
         }  else if (Input.GetKeyDown(KeyCode.Space) && !inAir) {
-            doJump();
+            doJump(8);
             inAir = true;
         }
     }
@@ -72,12 +72,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Ground")) {
             inAir = false;
             extraJumps = true;
+        } 
     }
 
-    private void doJump() {
-        rb.velocity = Vector2.up * jumpForce;
+    private void doJump(int k) {
+        rb.velocity = Vector2.up * jumpForce * k / 8;
     }
 }
