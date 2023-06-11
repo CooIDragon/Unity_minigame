@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
 
     public Transform frontCheck;
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask whatIsGround;
 
     private float moveInputX;
 
@@ -46,6 +49,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        inAir = !Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround)){
+            extraJumps = true;
+        }
+
         moveInputX = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(moveInputX * speed, rb.velocity.y);
@@ -68,14 +76,6 @@ public class PlayerController : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Ground")) {
-            inAir = false;
-            extraJumps = true;
-        } 
     }
 
     private void doJump(int k) {
