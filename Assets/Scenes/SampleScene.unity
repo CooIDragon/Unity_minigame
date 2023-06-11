@@ -15971,6 +15971,7 @@ Transform:
   m_Children:
   - {fileID: 373858433}
   - {fileID: 1696613142}
+  - {fileID: 1396540860}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15989,6 +15990,11 @@ MonoBehaviour:
   speed: 8
   jumpForce: 10
   frontCheck: {fileID: 1696613142}
+  groundCheck: {fileID: 1396540860}
+  checkRadius: 0.01
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1139477982
 GameObject:
   m_ObjectHideFlags: 0
@@ -20725,6 +20731,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1396540859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1396540860}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1396540860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396540859}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: -5.23, z: 0.41493833}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1134299237}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420845851
 GameObject:
   m_ObjectHideFlags: 0
@@ -26360,8 +26397,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696613141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.735, y: -4.843, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.735, y: -4.53, z: 0}
+  m_LocalScale: {x: 1, y: 299.73184, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1134299237}
@@ -35158,6 +35195,14 @@ PrefabInstance:
     - target: {fileID: 3559157953411902219, guid: dd44fd7af42b0d74c8ccf1eb924595eb, type: 3}
       propertyPath: jumpForce
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559157953411902219, guid: dd44fd7af42b0d74c8ccf1eb924595eb, type: 3}
+      propertyPath: checkRadius
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559157953411902219, guid: dd44fd7af42b0d74c8ccf1eb924595eb, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7198066798319334771, guid: dd44fd7af42b0d74c8ccf1eb924595eb, type: 3}
       propertyPath: m_RootOrder
